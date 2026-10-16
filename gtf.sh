@@ -21,3 +21,10 @@ cut -f9 data/chr3.gtf | cut -d";" -f3 | cut -d'"' -f1 | sort | uniq -c
 echo "# D) GENE NAMES: LINES NOT CONVERTED BY sed / NAMES WITH sed -n p"
 awk -F"\t" '$3=="gene"' data/chr3.gtf | sed 's/.*gene_name "\([^"]*\)".*/\1/' | grep -c "gene_id"
 awk -F"\t" '$3=="gene"' data/chr3.gtf | sed -n 's/.*gene_name "\([^"]*\)".*/\1/p' | wc -l
+
+# E) tag values on transcript lines, counted twice:
+# grep -o prints every tag on a line; the sed capture keeps only one tag per
+# line, because the leading .* matches as much as possible (up to the last tag).
+echo "# E) TAGS WITH grep -o / TAGS WITH sed"
+awk -F"\t" '$3=="transcript"' data/chr3.gtf | grep -o 'tag "[^"]*"' | sort | uniq -c | sort -nr
+awk -F"\t" '$3=="transcript"' data/chr3.gtf | grep 'tag "' | sed 's/.*tag "\([^"]*\)".*/\1/' | sort | uniq -c | sort -nr
