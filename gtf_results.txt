@@ -2,3 +2,7 @@
 # B) LINES CONTAINING gene / GENE LINES
 258906
     4161
+# C) THIRD KEY IN COLUMN 9
+2571  gene_name 
+1590  gene_source 
+254745  transcript_id 

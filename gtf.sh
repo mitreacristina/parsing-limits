@@ -9,3 +9,8 @@ echo "# A) GTF - data/chr3.gtf"
 echo "# B) LINES CONTAINING gene / GENE LINES"
 grep -c "gene" data/chr3.gtf
 awk -F"\t" '$3=="gene"' data/chr3.gtf | wc -l
+
+# C) treat column 9 as if it were columns separated by ";": take the 3rd field,
+# keep the key (text before the first double quote), count each key.
+echo "# C) THIRD KEY IN COLUMN 9"
+cut -f9 data/chr3.gtf | cut -d";" -f3 | cut -d'"' -f1 | sort | uniq -c
