@@ -14,3 +14,10 @@ awk -F"\t" '$3=="gene"' data/chr3.gtf | wc -l
 # keep the key (text before the first double quote), count each key.
 echo "# C) THIRD KEY IN COLUMN 9"
 cut -f9 data/chr3.gtf | cut -d";" -f3 | cut -d'"' -f1 | sort | uniq -c
+
+# D) gene names with a sed capture group, on gene lines only.
+# 1) lines sed did not change (they still contain gene_id): genes without gene_name
+# 2) with -n and the p flag, only lines where the substitution worked are printed
+echo "# D) GENE NAMES: LINES NOT CONVERTED BY sed / NAMES WITH sed -n p"
+awk -F"\t" '$3=="gene"' data/chr3.gtf | sed 's/.*gene_name "\([^"]*\)".*/\1/' | grep -c "gene_id"
+awk -F"\t" '$3=="gene"' data/chr3.gtf | sed -n 's/.*gene_name "\([^"]*\)".*/\1/p' | wc -l
