@@ -10,3 +10,9 @@ echo "# A) FOOD.CSV - letter m"
 echo "# B) LINES IN THE FILE / FOODS"
 wc -l < data/Food.csv
 grep -o 'FOOD[0-9]\{5\}' data/Food.csv | wc -l
+
+# C) top 5 food groups using cut on the comma (column 12), header skipped.
+# Commas inside quoted values and descriptions spread over several lines
+# shift the columns, so this result is expected to be wrong.
+echo "# C) TOP 5 FOOD GROUPS - cut"
+tail -n +2 data/Food.csv | cut -d, -f12 | sort | uniq -c | sort -nr | head -5
