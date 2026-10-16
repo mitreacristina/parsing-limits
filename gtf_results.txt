@@ -1,0 +1,4 @@
+# A) GTF - data/chr3.gtf
+# B) LINES CONTAINING gene / GENE LINES
+258906
+    4161
