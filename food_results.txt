@@ -1,0 +1,4 @@
+# A) FOOD.CSV - letter m
+# B) LINES IN THE FILE / FOODS
+    1343
+     992
