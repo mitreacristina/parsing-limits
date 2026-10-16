@@ -1,0 +1,31 @@
+# A) GTF - data/chr3.gtf
+# B) LINES CONTAINING gene / GENE LINES
+258906
+    4161
+# C) THIRD KEY IN COLUMN 9
+2571  gene_name 
+1590  gene_source 
+254745  transcript_id 
+# D) GENE NAMES: LINES NOT CONVERTED BY sed / NAMES WITH sed -n p
+1590
+    2571
+# E) TAGS WITH grep -o / TAGS WITH sed
+9015 tag "gencode_basic"
+4161 tag "Ensembl_canonical"
+2967 tag "CCDS"
+2406 tag "gencode_primary"
+1582 tag "mRNA_end_NF"
+1278 tag "cds_end_NF"
+1032 tag "MANE_Select"
+1022 tag "mRNA_start_NF"
+ 827 tag "cds_start_NF"
+  15 tag "seleno"
+   6 tag "MANE_Plus_Clinical"
+4161 Ensembl_canonical
+3826 gencode_basic
+1417 mRNA_end_NF
+1319 gencode_primary
+1002 mRNA_start_NF
+  55 CCDS
+   6 MANE_Plus_Clinical
+   1 seleno
