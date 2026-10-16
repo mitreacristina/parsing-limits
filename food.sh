@@ -16,3 +16,9 @@ grep -o 'FOOD[0-9]\{5\}' data/Food.csv | wc -l
 # shift the columns, so this result is expected to be wrong.
 echo "# C) TOP 5 FOOD GROUPS - cut"
 tail -n +2 data/Food.csv | cut -d, -f12 | sort | uniq -c | sort -nr | head -5
+
+# D) same question after removing quoted text:
+#   tr joins all lines into one (newline -> ~), sed deletes every "..." value,
+#   tr splits the text back into lines (~ -> newline).
+echo "# D) TOP 5 FOOD GROUPS - AFTER REMOVING QUOTED TEXT"
+tr "\n" "~" < data/Food.csv | sed 's/"[^"]*"//g' | tr "~" "\n" | tail -n +2 | cut -d, -f12 | sort | uniq -c | sort -nr | head -5
