@@ -22,3 +22,9 @@ tail -n +2 data/Food.csv | cut -d, -f12 | sort | uniq -c | sort -nr | head -5
 #   tr splits the text back into lines (~ -> newline).
 echo "# D) TOP 5 FOOD GROUPS - AFTER REMOVING QUOTED TEXT"
 tr "\n" "~" < data/Food.csv | sed 's/"[^"]*"//g' | tr "~" "\n" | tail -n +2 | cut -d, -f12 | sort | uniq -c | sort -nr | head -5
+
+# E) on the cleaned text: foods whose name (column 2) starts with my letter
+# (grep -i: upper or lower case), then their top 5 food groups (column 12).
+echo "# E) FOODS STARTING WITH m: COUNT AND TOP 5 FOOD GROUPS"
+tr "\n" "~" < data/Food.csv | sed 's/"[^"]*"//g' | tr "~" "\n" | tail -n +2 | cut -d, -f2 | grep -ic "^m"
+tr "\n" "~" < data/Food.csv | sed 's/"[^"]*"//g' | tr "~" "\n" | tail -n +2 | cut -d, -f2,12 | grep -i "^m" | cut -d, -f2 | sort | uniq -c | sort -nr | head -5

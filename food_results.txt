@@ -14,3 +14,10 @@
  147 Vegetables
  126 Herbs and Spices
   51 Dishes
+# E) FOODS STARTING WITH m: COUNT AND TOP 5 FOOD GROUPS
+59
+  11 Fruits
+   7 Vegetables
+   6 Milk and milk products
+   5 Aquatic foods
+   4 Herbs and Spices
