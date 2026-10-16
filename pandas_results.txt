@@ -1,0 +1,35 @@
+# FOOD B) NUMBER OF FOODS
+992
+# FOOD C/D) TOP 5 FOOD GROUPS
+food_group
+Aquatic foods       169
+Fruits              157
+Vegetables          147
+Herbs and Spices    126
+Dishes               51
+# FOOD E) FOODS STARTING WITH m: COUNT AND TOP 5 FOOD GROUPS
+60
+food_group
+Fruits                    12
+Vegetables                 7
+Milk and milk products     6
+Aquatic foods              5
+Herbs and Spices           4
+# GTF B) GENE LINES
+4161
+# GTF D) GENES WITHOUT A gene_name / GENES WITH A gene_name
+1590
+2571
+# GTF E) TAGS ON TRANSCRIPT LINES
+attributes
+gencode_basic         9015
+Ensembl_canonical     4161
+CCDS                  2967
+gencode_primary       2406
+mRNA_end_NF           1582
+cds_end_NF            1278
+MANE_Select           1032
+mRNA_start_NF         1022
+cds_start_NF           827
+seleno                  15
+MANE_Plus_Clinical       6
