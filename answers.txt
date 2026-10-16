@@ -1,0 +1,34 @@
+Homework 2 and 3 - answers (mitrea: chromosome 3, letter m)
+
+1. One food, many lines.
+The file has     1343 lines but only      992 foods. Some descriptions contain line
+breaks inside their quotes, so one food spans several lines, and the extra lines are
+continuations of descriptions, not new foods. The naive cut in C gave: <empty> (377), image/jpeg (68), Vegetables (16), <empty> (16), Type 1 (15).
+cut splits on every comma, but descriptions (and a few names) contain commas inside
+quotes, so column 12 on most lines is some other field (picture_content_type gives
+image/jpeg, food_type gives Type 1), and on continuation lines of a description it is
+text or nothing, which shows up as empty values.
+
+2. The quote trick.
+After removing quoted text, D gives Aquatic foods (169), Fruits (157), Vegetables (147), Herbs and Spices (126), Dishes (51), the same as pandas. E does not always
+match: deleting everything between quotes also deleted every name that contains a
+comma, because those names are quoted too (17 foods in the file), so those
+foods get an empty name and can no longer start with any letter. For my letter (m) bash finds 59 foods but pandas finds 60: the foods missing from bash are Mandarin orange (Clementine, Tangerine).
+
+3. Keys are not columns.
+grep -c "gene" matches 258906 of the 258906 lines because every line has gene_id in
+column 9, while only     4161 lines have "gene" as their 3rd column; a text search does
+not know which column or key it matched. Splitting column 9 on ";" and taking the 3rd
+field gives different keys on different lines: gene_name (2571), gene_source (1590), transcript_id (254745). The position of a key depends
+on the line type and on which keys are present, so a key cannot be found by position.
+sed left 1590 gene lines unchanged: those genes have no gene_name, the pattern
+does not match, and sed prints the whole original line, so a list of "names" silently
+contains full GTF lines. With -n and p only the     2571 real names are printed.
+pandas reports 1590 genes without a name and 2571 with a name, matching the
+first and second D numbers.
+
+4. Repeated keys.
+grep -o counts every tag (gencode_basic 9015, Ensembl_canonical 4161, CCDS 2967, gencode_primary 2406, mRNA_end_NF 1582, cds_end_NF 1278, MANE_Select 1032, mRNA_start_NF 1022, cds_start_NF 827, seleno 15, MANE_Plus_Clinical 6) and matches pandas. The sed count
+(Ensembl_canonical 4161, gencode_basic 3826, mRNA_end_NF 1417, gencode_primary 1319, mRNA_start_NF 1002, CCDS 55, MANE_Plus_Clinical 6, seleno 1) misses tags because a transcript line can have several tag keys and the
+leading .* matches as much as possible, up to the last 'tag "' on the line, so sed
+keeps only the last tag of each line and every earlier tag on that line is lost.
